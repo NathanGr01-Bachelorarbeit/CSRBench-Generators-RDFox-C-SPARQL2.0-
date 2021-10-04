@@ -1,0 +1,5 @@
+http://knoesis.wright.edu/ssw/ont/sensor-observation.owl#result
+http://knoesis.wright.edu/ssw/MeasureData_AirTemperature_C0777_2004_08_08_08_15_00
+http://knoesis.wright.edu/ssw/Observation_AirTemperature_C0777_2004_08_08_08_15_00
+"1625916373205"^^http://www.w3.org/2001/XMLSchema#dateTimeStamp
+"1625916346415"^^http://www.w3.org/2001/XMLSchema#long
