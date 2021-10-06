@@ -19,6 +19,15 @@ public class Stopper implements Runnable{
             if (RDFoxResultObserver.lastUpdateTime != 0 && System.currentTimeMillis() > (RDFoxResultObserver.lastUpdateTime + 10000)) {
                 stream.stop();
                 query.stop();
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                synchronized (RDFoxWrapper.syncObj) {
+                    RDFoxResultObserver.lastUpdateTime = 0;
+                    RDFoxWrapper.syncObj.notify();
+                }
                 break;
             }
             try {

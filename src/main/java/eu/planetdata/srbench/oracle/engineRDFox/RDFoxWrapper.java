@@ -1,5 +1,6 @@
 package eu.planetdata.srbench.oracle.engineRDFox;
 
+import eu.planetdata.srbench.oracle.Oracle;
 import eu.planetdata.srbench.oracle.configuration.Config;
 import org.openrdf.model.Statement;
 import org.openrdf.model.URI;
@@ -28,23 +29,39 @@ public class RDFoxWrapper {
 
     public long t0;
 
-    public static void main(String[] args) {
-        RDFoxStream stream = new RDFoxStream(getRDFoxWrapper().serverConnection);
-        RDFoxResultObserver resultObserver = new RDFoxResultObserver(Config.getInstance().getQuerySet()[0]);
-        NamedQuery query = new NamedQuery(stream.sr.stream, resultObserver);
-        new Thread(query).start();
-        new Thread(stream).start();
-        new Thread(stream.sr.stream).start();
-        resultObserver.setNamedStream(stream.sr.stream);
-        Stopper stopper = new Stopper(stream.sr.stream, query);
-        new Thread(stopper).start();
+    public static Object syncObj = new Object();
 
+    public static byte queryNumber;
+    public static boolean rdfoxRunning = false;
+
+    public static void main(String[] args) {
+        rdfoxRunning = true;
+        for(int i = 0; i < Config.getInstance().getQuerySet().length; i++) {
+            logger.info(i + "th Iteration starting");
+            queryNumber = (byte) i;
+            RDFoxStream stream = new RDFoxStream(getRDFoxWrapper(args[0]).serverConnection);
+            RDFoxResultObserver resultObserver = new RDFoxResultObserver(Config.getInstance().getQuerySet()[i]);
+            NamedQuery query = new NamedQuery(stream.sr.stream, resultObserver);
+            new Thread(query).start();
+            new Thread(stream).start();
+            new Thread(stream.sr.stream).start();
+            resultObserver.setNamedStream(stream.sr.stream);
+            Stopper stopper = new Stopper(stream.sr.stream, query);
+            new Thread(stopper).start();
+            synchronized(syncObj) {
+                try {
+                    syncObj.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     public static RDFoxWrapper getRDFoxWrapper() {
         if (rdfoxWrapper == null) {
             try {
-                rdfoxWrapper = new RDFoxWrapper();
+                rdfoxWrapper = new RDFoxWrapper("");
             } catch (JRDFoxException e) {
                 e.printStackTrace();
             }
@@ -52,14 +69,25 @@ public class RDFoxWrapper {
         return rdfoxWrapper;
     }
 
-    private RDFoxWrapper() throws JRDFoxException {
+    public static RDFoxWrapper getRDFoxWrapper(String licenseKey) {
+        if (rdfoxWrapper == null) {
+            try {
+                rdfoxWrapper = new RDFoxWrapper(licenseKey);
+            } catch (JRDFoxException e) {
+                e.printStackTrace();
+            }
+        }
+        return rdfoxWrapper;
+    }
+
+    private RDFoxWrapper(String licenseKey) throws JRDFoxException {
         final String serverURL = "rdfox:local";
         final String roleName = "nathan";
         final String password = "password";
 
         //RDFox Connection
         Map<String, String> parametersServer = new HashMap<String, String>();
-        parametersServer.put("license-file", "/home/nathangruber2001/NathansStudium/Semester6/Bachelorarbeit/Sonstiges/RDFox-linux-x86_64-5.0.0/RDFox.lic");
+        parametersServer.put("license-file", licenseKey);
         logger.debug(Arrays.toString(ConnectionFactory.startLocalServer(parametersServer)));
         ConnectionFactory.createFirstLocalServerRole(roleName, password);
         serverConnection = ConnectionFactory.newServerConnection(serverURL, roleName, password);

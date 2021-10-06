@@ -102,7 +102,7 @@ public class CSPARQL2ResultObserver extends QueryResultFormatter {
                         generalResult = new GeneralResult7();
                     (generalResult).relations.add(new Result7(new Head7(new String[]{"sensor", "ob1"}), timestamp, new Results7(new Bindings7[]{new Bindings7(timestamp, new Binding7(new TypeValue("uri", binding.get(sensor).toString()), new TypeValue("uri", binding.get(ob1).toString())))})));
                 }
-                try (OutputStream out = new FileOutputStream("csparql2-answer-" + uri.substring(uri.length() - 1) + ".json")) {
+                try (OutputStream out = new FileOutputStream("./src/main/resources/answers/csparql2-answer-" + uri.substring(uri.length() - 1) + ".json")) {
                     Gson gson = new Gson();
                     generalResult.relations = generalResult.relations.stream().distinct().sorted(new Comparator<Result>() {
                         @Override

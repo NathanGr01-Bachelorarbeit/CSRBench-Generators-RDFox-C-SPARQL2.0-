@@ -3,29 +3,29 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *  
+ *
  *       http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *  
+ *
  * Authors: Daniele Dell'Aglio, Jean-Paul Calbimonte, Marco Balduini,
  * 			Oscar Corcho, Emanuele Della Valle
  ******************************************************************************/
 package eu.planetdata.srbench.oracle.result;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class StreamProcessorOutput {
 	private static final Logger logger = LoggerFactory.getLogger(StreamProcessorOutput.class);
-	
+
 	private List<TimestampedRelation> results;
 
 	public StreamProcessorOutput() {
@@ -50,9 +50,16 @@ public class StreamProcessorOutput {
 	}
 
 	public boolean contains(StreamProcessorOutput outputStream){
-		List<TimestampedRelation> subSeq = outputStream.getResultRelations();
+		List<TimestampedRelation> subSeq = groupIt(outputStream.getResultRelations());
+//		List<TimestampedRelation> subSeq = outputStream.getResultRelations();
+		int totalResultSum = results.stream().mapToInt(t -> t.results.size()).sum();
+		results = groupIt(results);
+		//logger.info("Sizes: " + totalResultSum + " " + subSeq.size());
 		if(results.size()<subSeq.size()){
 			logger.debug("the subset size is greater than the set size!");
+			final List<TimestampedRelation> list = new ArrayList<>(subSeq);
+			List<String> list2 = results.stream().map(c -> c.toString()).collect(Collectors.toList());
+			list.removeIf(c -> list2.contains(c.toString()));
 			return false;
 		}
 		if(subSeq.size()==0)
@@ -72,6 +79,26 @@ public class StreamProcessorOutput {
 			}
 		}
 		return false;
+	}
+
+	public List<TimestampedRelation> groupIt(List<TimestampedRelation> list) {
+		Map<Long, TimestampedRelation> map = new HashMap<>();
+		for(TimestampedRelation tr : list) {
+			for(TimestampedRelationElement tre : tr.results) {
+				if(map.containsKey(tre.getTimestamp())) {
+					map.get(tre.getTimestamp()).addElement(tre);
+				}
+				else {
+					TimestampedRelation tr2 = new TimestampedRelation();
+					tr2.addElement(tre);
+					map.put(tre.getTimestamp(), tr2);
+				}
+			}
+		}
+		System.out.println("A: " + map.values());
+		List<TimestampedRelation> list2 = new ArrayList<>(map.values());
+		list2.sort(Comparator.comparingLong(a -> a.results.iterator().next().getTimestamp()));
+		return list2;
 	}
 
 	@Override
@@ -99,6 +126,6 @@ public class StreamProcessorOutput {
 			return false;
 		return true;
 	}
-	
-	
+
+
 }

@@ -3,15 +3,15 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *  
+ *
  *       http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *  
+ *
  * Authors: Daniele Dell'Aglio, Jean-Paul Calbimonte, Marco Balduini,
  * 			Oscar Corcho, Emanuele Della Valle
  ******************************************************************************/
@@ -37,13 +37,13 @@ import eu.planetdata.srbench.oracle.configuration.Config;
 
 public class StreamImporter {
 	private final static Logger logger = LoggerFactory.getLogger(StreamImporter.class);
-	protected Repository repo; 
-    ArrayList<String> graphs=new ArrayList<String>();
-	
+	protected Repository repo;
+	ArrayList<String> graphs=new ArrayList<String>();
+
 	public StreamImporter(){
 		this(Config.getInstance().getRepoDir());
 	}
-	
+
 	public StreamImporter(File repositoryFolder){
 		repo = new SailRepository(new NativeStore(repositoryFolder, "cspo,cops"));
 		try {
@@ -64,7 +64,7 @@ public class StreamImporter {
 			logger.error("Error while adding triples to repository");
 		}
 	}
-	
+
 	public void addTimestampedStatement(Resource subject, URI predicate, Value object, long timestamp) throws RepositoryException{
 		URI graph = BenchmarkVocab.getGraphURI(timestamp);
 		repo.getConnection().begin();
@@ -74,16 +74,16 @@ public class StreamImporter {
 		repo.getConnection().add(subject, predicate, object, graph);
 		repo.getConnection().commit();
 	}
-	
+
 	public void clearRepository() throws RepositoryException{
 		repo.getConnection().clear();
 		repo.getConnection().commit();
 	}
-	
+
 	public Repository getRepository(){
 		return repo;
 	}
-	
+
 	protected boolean existsGraph(URI graphName){
 		try {
 			return repo.getConnection().getStatements(graphName, null, null, false, BenchmarkVocab.graphList).hasNext();

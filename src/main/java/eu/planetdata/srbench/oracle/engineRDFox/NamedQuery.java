@@ -1,6 +1,7 @@
 package eu.planetdata.srbench.oracle.engineRDFox;
 
 import eu.planetdata.srbench.oracle.configuration.Config;
+import eu.planetdata.srbench.oracle.engineCSPARQL2.CSPARQL2Wrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tech.oxfordsemantic.jrdfox.Prefixes;
@@ -18,10 +19,16 @@ public class NamedQuery implements Runnable {
     public boolean stop = false;
 
     public NamedQuery(NamedStream stream, QueryAnswerMonitor queryAnswerMonitor) {
-        this.query = Config.getInstance().getQuery(Config.getInstance().getQuerySet()[0]).getBooleanQuery();
+        if(RDFoxWrapper.rdfoxRunning) {
+            this.query = Config.getInstance().getQuery(Config.getInstance().getQuerySet()[RDFoxWrapper.queryNumber]).getBooleanQuery();
+            this.answerFrequencyInMilliSeconds = (int) Config.getInstance().getQuery(Config.getInstance().getQuerySet()[RDFoxWrapper.queryNumber]).getWindowDefinition().getSlide();
+        }
+        else {
+            this.query = Config.getInstance().getQuery(Config.getInstance().getQuerySet()[0]).getBooleanQuery();
+            this.answerFrequencyInMilliSeconds = (int) Config.getInstance().getQuery(Config.getInstance().getQuerySet()[0]).getWindowDefinition().getSlide();
+        }
         this.stream = stream;
         //this.answerFrequencyInMilliSeconds = (Config.getInstance().getInputStreamInterval()).intValue();
-        this.answerFrequencyInMilliSeconds = (int) Config.getInstance().getQuery(Config.getInstance().getQuerySet()[0]).getWindowDefinition().getSlide();
         this.queryAnswerMonitor = queryAnswerMonitor;
     }
 

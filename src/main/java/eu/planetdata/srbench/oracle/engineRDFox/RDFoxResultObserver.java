@@ -14,6 +14,7 @@ import tech.oxfordsemantic.jrdfox.client.QueryAnswerMonitor;
 import tech.oxfordsemantic.jrdfox.exceptions.JRDFoxException;
 import tech.oxfordsemantic.jrdfox.logic.expression.Resource;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -68,7 +69,7 @@ public class RDFoxResultObserver implements QueryAnswerMonitor {
                 generalResult = new GeneralResult7();
             (generalResult).relations.add(new Result7(new Head7(new String[]{"sensor", "ob1"}), timestamp, new Results7(new Bindings7[]{new Bindings7(timestamp, new Binding7(new TypeValue("uri", list.get(0).toString().substring(1, list.get(0).toString().length() - 1)), new TypeValue("uri", list.get(1).toString().substring(1, list.get(1).toString().length() - 1))))})));
         }
-        try (OutputStream out = new FileOutputStream("rdfox-answer-" + currentQuery.substring(currentQuery.length()-1) + ".json")) {
+        try (OutputStream out = new FileOutputStream("./src/main/resources/answers/rdfox-answer-" + currentQuery.substring(currentQuery.length()-1) + ".json")) {
             Gson gson = new Gson();
             generalResult.relations = generalResult.relations.stream().distinct().sorted(new Comparator<Result>() {
                 @Override
@@ -78,6 +79,7 @@ public class RDFoxResultObserver implements QueryAnswerMonitor {
             }).collect(Collectors.toList());
             out.write(gson.toJson(generalResult).getBytes(StandardCharsets.UTF_8));
             //logger.info(gson.toJson(relations));
+            out.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

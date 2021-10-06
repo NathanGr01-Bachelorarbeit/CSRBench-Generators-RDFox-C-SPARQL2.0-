@@ -16,7 +16,7 @@ public class RDFoxStream implements Runnable{
 
     public RDFoxStream(ServerConnection serverConnection) {
         this.serverConnection = serverConnection;
-        WindowDefinition win = Config.getInstance().getQuery(Config.getInstance().getQuerySet()[0]).getWindowDefinition();
+        WindowDefinition win = Config.getInstance().getQuery(Config.getInstance().getQuerySet()[RDFoxWrapper.queryNumber]).getWindowDefinition();
         logger.info("Window: " + win.getSize() + " - " + win.getSlide());
         sr = new SRBenchImporterRDFox(new NamedStream((int) win.getSize(), (int) win.getSlide(), serverConnection));
     }
@@ -28,7 +28,7 @@ public class RDFoxStream implements Runnable{
     public void run() {
         logger.info("Starting stream");
         try {
-            sr.clearRepository();
+            //sr.clearRepository();
             logger.debug("importing the data");
             sr.importAllData();
             logger.debug("finished import");

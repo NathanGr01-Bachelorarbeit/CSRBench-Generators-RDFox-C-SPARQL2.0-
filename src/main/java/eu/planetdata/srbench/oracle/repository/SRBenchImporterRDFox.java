@@ -48,7 +48,7 @@ import org.slf4j.LoggerFactory;
 
 import eu.planetdata.srbench.oracle.configuration.Config;
 
-public class SRBenchImporterRDFox extends StreamImporter{
+public class SRBenchImporterRDFox {
 	private final static Logger logger = LoggerFactory.getLogger(SRBenchImporterRDFox.class);
 	private int max=0;
 	private long interval=0;
@@ -65,10 +65,10 @@ public class SRBenchImporterRDFox extends StreamImporter{
 	public void addData(File f, long timestamp) throws RDFParseException, IOException, RepositoryException{
 		URI graph = BenchmarkVocab.getGraphURI(timestamp);
 		//repo.getConnection().begin();
-		if(!existsGraph(graph)){
+		//if(!existsGraph(graph)){
 			stream.put(new ContextStatementImpl(graph, BenchmarkVocab.hasTimestamp, new NumericLiteralImpl(timestamp), BenchmarkVocab.graphList));
 			//repo.getConnection().add(graph, BenchmarkVocab.hasTimestamp, new NumericLiteralImpl(timestamp), BenchmarkVocab.graphList);
-		}
+		//}
 		//repo.getConnection().add(f,"",RDFFormat.TURTLE, graph);
 		RDFParser rdfParser = Rio.createParser(RDFFormat.TURTLE);
 		Collection statements = new ArrayList();
@@ -85,14 +85,7 @@ public class SRBenchImporterRDFox extends StreamImporter{
 		}
 		//repo.getConnection().commit();
 	}
-	
-	public void addStaticData(File f) throws RDFParseException, IOException, RepositoryException{
-		URI graph = BenchmarkVocab.graphStaticData;
-		repo.getConnection().begin();
-		repo.getConnection().add(f,"",RDFFormat.TURTLE, graph);
-		repo.getConnection().commit();
-	}
-	
+
 	public void importData(int time) throws RDFParseException, IOException, RepositoryException{
 		addData(new File("data/data_"+(time < 10 ? "0" + time : time)+".ttl"), time*interval);
 	}
@@ -109,21 +102,5 @@ public class SRBenchImporterRDFox extends StreamImporter{
 			}
 		}
 			
-	}
-	
-	public void  getGraphs() throws RepositoryException, MalformedQueryException, QueryEvaluationException{
-		RepositoryConnection conn=getRepository().getConnection();
-		String qg="SELECT ?g " +
-				"FROM <"+BenchmarkVocab.graphList+"> " +
-				"WHERE{" +
-				"?g <" + BenchmarkVocab.hasTimestamp + "> ?timestamp. " +
-				//"FILTER(?timestamp >= "+range.getFrom() + " && ?timestamp < "+range.getTo()+") " +
-				"}";
-		TupleQuery q=conn.prepareTupleQuery(QueryLanguage.SPARQL, qg);
-		TupleQueryResult tqr=q.evaluate();		
-		while (tqr.hasNext()){
-			BindingSet bind=tqr.next();
-	    	logger.info(bind.getValue("g").stringValue());
-		}
 	}
 }
