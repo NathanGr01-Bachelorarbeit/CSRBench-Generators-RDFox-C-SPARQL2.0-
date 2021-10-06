@@ -16,7 +16,7 @@ The project has four main files:
 
 Configuration:
  * The project can be configured editing the setup.properties file. See https://github.com/dellaglio/csrbench-oracle/wiki/Configuration for a description of the properties.
- * An additional query parameter, query<i>.rspqlquery is provided. Those queries are used by C-SPARQL2.0 in order to provide answers.
+ * An additional query parameter, srb.query_i_.rspqlquery is provided. Those queries are used by C-SPARQL2.0 in order to provide answers.
 
 Execute the RDFoxWrapper:
  * RDFoxWrapper executes the queries that are specified in setup.properties
