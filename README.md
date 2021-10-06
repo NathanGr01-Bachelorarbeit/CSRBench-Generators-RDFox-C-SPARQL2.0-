@@ -25,7 +25,7 @@ Execute the RDFoxWrapper:
  * RDFoxWrapper is able to execute every query after each other correctly, if the execution of every query if configured
  
  
-Execute the CSPARQL2Wrapper:
+<b>Execute the CSPARQL2Wrapper:</b>
  * CSPARQL2Wrapper executes the queries that are specified in setup.properties
  * CSPARQL2Wrapper saves the answers into 'src/main/resources/answers/' folder
  * In order to work, the C-SPARQL2.0 engine must be integrated into the project
