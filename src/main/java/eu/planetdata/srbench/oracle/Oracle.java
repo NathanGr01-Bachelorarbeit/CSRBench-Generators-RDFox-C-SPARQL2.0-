@@ -166,7 +166,7 @@ public class Oracle {
 	public static void main(String[] args) throws IOException {
 		Oracle oracle = new Oracle();
 
-		boolean detailedResults=false;
+		boolean detailedResults=true;
 
 		//		Writer out = new BufferedWriter(new FileWriter("output-"+System.currentTimeMillis()+".html"));
 		Writer out = new BufferedWriter(new FileWriter("output.html"));

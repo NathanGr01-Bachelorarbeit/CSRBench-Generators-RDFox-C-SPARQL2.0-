@@ -84,7 +84,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/java/eu/planetdata/srbench/oracle/engineCSPARQL2/jasperHeute2.jar!/" />
+          <root url="jar://$MODULE_DIR$/src/main/java/eu/planetdata/srbench/oracle/engineCSPARQL2/csparql2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

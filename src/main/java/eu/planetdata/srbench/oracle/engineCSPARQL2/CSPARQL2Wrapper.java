@@ -58,7 +58,7 @@ public class CSPARQL2Wrapper {
         logger.info("QUERY: " + query);
         ContinuousQueryExecution cqe = csparqlEngine.register(query, config);
         ContinuousQuery q = cqe.getContinuousQuery();
-        CSPARQL2Wrapper.resultObserver = new CSPARQL2ResultObserver(queryId,"TABLE", true);
+        CSPARQL2Wrapper.resultObserver = new CSPARQL2ResultObserver(queryId,"TABLE", false);
         cqe.add(resultObserver);
     }
 }

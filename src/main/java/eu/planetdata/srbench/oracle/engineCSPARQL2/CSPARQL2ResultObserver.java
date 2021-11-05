@@ -85,8 +85,9 @@ public class CSPARQL2ResultObserver extends QueryResultFormatter {
                     Var avg = vars.stream().filter(c -> c.toString().equals("?avg")).findAny().get();
                     if (generalResult == null)
                         generalResult = new GeneralResult4();
-                    logger.info("F: " + binding.get(avg).toString().split("\"")[1]);
-                    (generalResult).relations.add(new Result4(new Head4(new String[]{"avg"}), timestamp, new Results4(new Bindings4[]{new Bindings4(timestamp, new Binding4(new TripleTypValue("literal", binding.get(avg).toString().split("\"")[1].substring(0, binding.get(avg).toString().split("\"")[1].length() - 2), "http://www.w3.org/2001/XMLSchema#double")))})));
+                    if(binding.get(avg).toString().split("\"")[1].length() >= 2) {
+                        (generalResult).relations.add(new Result4(new Head4(new String[]{"avg"}), timestamp, new Results4(new Bindings4[]{new Bindings4(timestamp, new Binding4(new TripleTypValue("literal", binding.get(avg).toString().split("\"")[1].substring(0, binding.get(avg).toString().split("\"")[1].length() - 2), "http://www.w3.org/2001/XMLSchema#double")))})));
+                    }
                 } else if (uri.equals("srb.query6")) {
                     Var sensor = vars.stream().filter(c -> c.toString().equals("?sensor")).findAny().get();
                     Var obs = vars.stream().filter(c -> c.toString().equals("?obs")).findAny().get();
