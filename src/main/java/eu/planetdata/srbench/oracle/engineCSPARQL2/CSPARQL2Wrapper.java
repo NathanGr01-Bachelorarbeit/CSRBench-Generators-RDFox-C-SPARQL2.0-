@@ -14,6 +14,8 @@ import org.apache.jena.graph.Graph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.FileNotFoundException;
+
 public class CSPARQL2Wrapper {
     private static final Logger logger = LoggerFactory.getLogger(CSPARQL2Wrapper.class);
 
@@ -22,7 +24,7 @@ public class CSPARQL2Wrapper {
     private static CSPARQL2ResultObserver resultObserver;
     public static long t0;
 
-    public static void main(String[] args) throws ConfigurationException {
+    public static void main(String[] args) throws ConfigurationException, FileNotFoundException {
         EngineConfiguration ec = EngineConfiguration.loadConfig("/csparqlsetup.properties");
         String path = CSPARQL2Wrapper.class.getResource("/csparqlsetup.properties").getPath();
         config = new SDSConfiguration(path);
@@ -52,7 +54,7 @@ public class CSPARQL2Wrapper {
         }
     }
 
-    private static void startCSPARQL2Queries () {
+    private static void startCSPARQL2Queries () throws FileNotFoundException {
         String queryId = Config.getInstance().getQuerySet()[0];
         String query = Config.getInstance().getQuery(Config.getInstance().getQuerySet()[0]).getRspqlQuery();
         logger.info("QUERY: " + query);

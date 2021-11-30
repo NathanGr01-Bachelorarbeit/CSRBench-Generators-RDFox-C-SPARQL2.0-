@@ -10,6 +10,7 @@ import eu.planetdata.srbench.oracle.engineRDFox.Datatypes.Query7.*;
 import eu.planetdata.srbench.oracle.engineRDFox.Datatypes.Result;
 import eu.planetdata.srbench.oracle.repository.SRBenchImporterCSPARQL2;
 import it.polimi.yasper.core.format.QueryResultFormatter;
+import lombok.SneakyThrows;
 import org.apache.jena.graph.Graph;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.riot.RDFDataMgr;
@@ -24,6 +25,7 @@ import tech.oxfordsemantic.jrdfox.client.QueryAnswerMonitor;
 import tech.oxfordsemantic.jrdfox.exceptions.JRDFoxException;
 import tech.oxfordsemantic.jrdfox.logic.expression.Resource;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -37,11 +39,12 @@ public class CSPARQL2ResultObserver extends QueryResultFormatter {
     private GeneralResult generalResult;
     public static long lastUpdateTime = 0;
 
-    public CSPARQL2ResultObserver(String queryKey, String format, boolean distinct) {
+    public CSPARQL2ResultObserver(String queryKey, String format, boolean distinct) throws FileNotFoundException {
         super(format, distinct);
         uri = queryKey;
     }
 
+    @SneakyThrows
     @Override
     public void update(Observable o, Object arg) {
         logger.info("Receiving");

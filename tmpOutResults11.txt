@@ -1,0 +1,112 @@
+obs: http://knoesis.wright.edu/ssw/Observation_AirTemperature_C1192_2004_08_08_07_05_00
+sensor: http://knoesis.wright.edu/ssw/System_C1192
+res: http://knoesis.wright.edu/ssw/MeasureData_AirTemperature_C1192_2004_08_08_07_05_00
+value: "83"^^http://www.w3.org/2001/XMLSchema#double
+eventTime: "1637931350856"^^http://www.w3.org/2001/XMLSchema#dateTimeStamp
+processingTime: "1637931350868"^^http://www.w3.org/2001/XMLSchema#long
+
+
+obs: http://knoesis.wright.edu/ssw/Observation_AirTemperature_C0837_2004_08_08_07_15_00
+sensor: http://knoesis.wright.edu/ssw/System_C0837
+res: http://knoesis.wright.edu/ssw/MeasureData_AirTemperature_C0837_2004_08_08_07_15_00
+value: "97"^^http://www.w3.org/2001/XMLSchema#double
+eventTime: "1637931352940"^^http://www.w3.org/2001/XMLSchema#dateTimeStamp
+processingTime: "1637931352945"^^http://www.w3.org/2001/XMLSchema#long
+
+
+obs: http://knoesis.wright.edu/ssw/Observation_AirTemperature_C1192_2004_08_08_07_20_00
+sensor: http://knoesis.wright.edu/ssw/System_C1192
+res: http://knoesis.wright.edu/ssw/MeasureData_AirTemperature_C1192_2004_08_08_07_20_00
+value: "83"^^http://www.w3.org/2001/XMLSchema#double
+eventTime: "1637931353956"^^http://www.w3.org/2001/XMLSchema#dateTimeStamp
+processingTime: "1637931353961"^^http://www.w3.org/2001/XMLSchema#long
+
+
+obs: http://knoesis.wright.edu/ssw/Observation_AirTemperature_C0837_2004_08_08_07_30_00
+sensor: http://knoesis.wright.edu/ssw/System_C0837
+res: http://knoesis.wright.edu/ssw/MeasureData_AirTemperature_C0837_2004_08_08_07_30_00
+value: "97"^^http://www.w3.org/2001/XMLSchema#double
+eventTime: "1637931355994"^^http://www.w3.org/2001/XMLSchema#dateTimeStamp
+processingTime: "1637931356000"^^http://www.w3.org/2001/XMLSchema#long
+
+
+obs: http://knoesis.wright.edu/ssw/Observation_AirTemperature_C1192_2004_08_08_07_35_00
+sensor: http://knoesis.wright.edu/ssw/System_C1192
+res: http://knoesis.wright.edu/ssw/MeasureData_AirTemperature_C1192_2004_08_08_07_35_00
+value: "83"^^http://www.w3.org/2001/XMLSchema#double
+eventTime: "1637931357010"^^http://www.w3.org/2001/XMLSchema#dateTimeStamp
+processingTime: "1637931357014"^^http://www.w3.org/2001/XMLSchema#long
+
+
+obs: http://knoesis.wright.edu/ssw/Observation_AirTemperature_C0837_2004_08_08_07_45_00
+sensor: http://knoesis.wright.edu/ssw/System_C0837
+res: http://knoesis.wright.edu/ssw/MeasureData_AirTemperature_C0837_2004_08_08_07_45_00
+value: "97"^^http://www.w3.org/2001/XMLSchema#double
+eventTime: "1637931359051"^^http://www.w3.org/2001/XMLSchema#dateTimeStamp
+processingTime: "1637931359056"^^http://www.w3.org/2001/XMLSchema#long
+
+
+obs: http://knoesis.wright.edu/ssw/Observation_AirTemperature_C1192_2004_08_08_07_50_00
+sensor: http://knoesis.wright.edu/ssw/System_C1192
+res: http://knoesis.wright.edu/ssw/MeasureData_AirTemperature_C1192_2004_08_08_07_50_00
+value: "83"^^http://www.w3.org/2001/XMLSchema#double
+eventTime: "1637931360067"^^http://www.w3.org/2001/XMLSchema#dateTimeStamp
+processingTime: "1637931360071"^^http://www.w3.org/2001/XMLSchema#long
+
+
+obs: http://knoesis.wright.edu/ssw/Observation_AirTemperature_C0837_2004_08_08_08_00_00
+sensor: http://knoesis.wright.edu/ssw/System_C0837
+res: http://knoesis.wright.edu/ssw/MeasureData_AirTemperature_C0837_2004_08_08_08_00_00
+value: "97"^^http://www.w3.org/2001/XMLSchema#double
+eventTime: "1637931362104"^^http://www.w3.org/2001/XMLSchema#dateTimeStamp
+processingTime: "1637931362109"^^http://www.w3.org/2001/XMLSchema#long
+
+
+obs: http://knoesis.wright.edu/ssw/Observation_AirTemperature_C1192_2004_08_08_08_05_00
+sensor: http://knoesis.wright.edu/ssw/System_C1192
+res: http://knoesis.wright.edu/ssw/MeasureData_AirTemperature_C1192_2004_08_08_08_05_00
+value: "83"^^http://www.w3.org/2001/XMLSchema#double
+eventTime: "1637931363127"^^http://www.w3.org/2001/XMLSchema#dateTimeStamp
+processingTime: "1637931363136"^^http://www.w3.org/2001/XMLSchema#long
+
+
+obs: http://knoesis.wright.edu/ssw/Observation_AirTemperature_C0837_2004_08_08_08_15_00
+sensor: http://knoesis.wright.edu/ssw/System_C0837
+res: http://knoesis.wright.edu/ssw/MeasureData_AirTemperature_C0837_2004_08_08_08_15_00
+value: "97"^^http://www.w3.org/2001/XMLSchema#double
+eventTime: "1637931365169"^^http://www.w3.org/2001/XMLSchema#dateTimeStamp
+processingTime: "1637931365173"^^http://www.w3.org/2001/XMLSchema#long
+
+
+obs: http://knoesis.wright.edu/ssw/Observation_AirTemperature_C1192_2004_08_08_08_20_00
+sensor: http://knoesis.wright.edu/ssw/System_C1192
+res: http://knoesis.wright.edu/ssw/MeasureData_AirTemperature_C1192_2004_08_08_08_20_00
+value: "83"^^http://www.w3.org/2001/XMLSchema#double
+eventTime: "1637931366182"^^http://www.w3.org/2001/XMLSchema#dateTimeStamp
+processingTime: "1637931366185"^^http://www.w3.org/2001/XMLSchema#long
+
+
+obs: http://knoesis.wright.edu/ssw/Observation_AirTemperature_C0837_2004_08_08_08_30_00
+sensor: http://knoesis.wright.edu/ssw/System_C0837
+res: http://knoesis.wright.edu/ssw/MeasureData_AirTemperature_C0837_2004_08_08_08_30_00
+value: "97"^^http://www.w3.org/2001/XMLSchema#double
+eventTime: "1637931368211"^^http://www.w3.org/2001/XMLSchema#dateTimeStamp
+processingTime: "1637931368215"^^http://www.w3.org/2001/XMLSchema#long
+
+
+obs: http://knoesis.wright.edu/ssw/Observation_AirTemperature_C1192_2004_08_08_08_35_00
+sensor: http://knoesis.wright.edu/ssw/System_C1192
+res: http://knoesis.wright.edu/ssw/MeasureData_AirTemperature_C1192_2004_08_08_08_35_00
+value: "83"^^http://www.w3.org/2001/XMLSchema#double
+eventTime: "1637931369221"^^http://www.w3.org/2001/XMLSchema#dateTimeStamp
+processingTime: "1637931369224"^^http://www.w3.org/2001/XMLSchema#long
+
+
+obs: http://knoesis.wright.edu/ssw/Observation_AirTemperature_C0837_2004_08_08_08_45_00
+sensor: http://knoesis.wright.edu/ssw/System_C0837
+res: http://knoesis.wright.edu/ssw/MeasureData_AirTemperature_C0837_2004_08_08_08_45_00
+value: "97"^^http://www.w3.org/2001/XMLSchema#double
+eventTime: "1637931371239"^^http://www.w3.org/2001/XMLSchema#dateTimeStamp
+processingTime: "1637931371242"^^http://www.w3.org/2001/XMLSchema#long
+
+
